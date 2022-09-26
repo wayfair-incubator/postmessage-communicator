@@ -10,7 +10,7 @@ This document outlines security procedures and general policies for the
 ## Reporting a Bug
 
 The `postmessage-communicator` team and community take all security bugs in
-`postmessage-communicator` seriously.  Thank you for improving the security of
+`postmessage-communicator` seriously. Thank you for improving the security of
 `postmessage-communicator`. We appreciate your efforts and responsible disclosure and
 will make every effort to acknowledge your contributions.
 
