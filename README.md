@@ -43,14 +43,14 @@ install them.
 ### `subscribeEvent`
 
 | Parameter Name  | Required | Description                                                                 | Type                      | Default |
-|-----------------|----------|-----------------------------------------------------------------------------|---------------------------|---------|
+| --------------- | -------- | --------------------------------------------------------------------------- | ------------------------- | ------- |
 | eventType       | yes      | the event type that you want to subscribe to                                | string                    |         |
 | messageCallBack | yes      | the callback that you want to execute when the listener receives that event | (e: MessageEvent) => void |         |
 
-### 'unsubscribe`
+### `unsubscribe`
 
 | Parameter Name  | Required | Description                                                                        | Type                      | Default |
-|-----------------|----------|------------------------------------------------------------------------------------|---------------------------|---------|
+| --------------- | -------- | ---------------------------------------------------------------------------------- | ------------------------- | ------- |
 | messageCallBack | yes      | the subscription returned by the subscribeEvent method corresponding to this event | (e: MessageEvent) => void |         |
 
 ```ts
