@@ -38,7 +38,7 @@ install them.
    npm install
    ```
 
-## Library API
+## Communicator API
 
 ### `subscribeEvent`
 
@@ -53,12 +53,32 @@ install them.
 | --------------- | -------- | ---------------------------------------------------------------------------------- | ------------------------- | ------- |
 | messageCallBack | yes      | the subscription returned by the subscribeEvent method corresponding to this event | (e: MessageEvent) => void |         |
 
-```ts
-subscribeEvent(eventType: string, messageCallback: (e: MessageEvent) => void): (e: MessageEvent) => void;
-    unsubscribe(messageCallBack: (e: MessageEvent) => void): void;
-    initializePost({ target, origin }: InitializePostProps): void;
-    send(payload: SendPayload): void;
-```
+### `post`
+
+| Parameter Name | Required | Description                                            | Type                                 | Default |
+| -------------- | -------- | ------------------------------------------------------ | ------------------------------------ | ------- |
+| type           | yes      | the name of the event you want to post eg: `addToCart` | string \| VendorEvent \| ClientEvent |         |
+| payload        | yes      | the data you want to pass in your post                 | anything but a function              |         |
+
+## Vendor Communicator API
+
+### `addToCart`
+
+### `designerHandOff`
+
+### `requestToken`
+
+### `projectDirty`
+
+### `projectSaved`
+
+### `projectDeleted`
+
+## Client Communicator API
+
+### `init`
+
+### `refreshToken`
 
 ## Roadmap
 
