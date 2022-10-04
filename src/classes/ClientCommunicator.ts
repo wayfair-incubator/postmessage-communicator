@@ -1,8 +1,8 @@
 import {Communicator} from './Communicator';
 
-export enum ClientEvents {
-  init,
-  refreshToken,
+export enum ClientEvent {
+  Init,
+  RefreshToken,
 }
 
 interface InitPayload {
@@ -14,9 +14,9 @@ interface InitPayload {
 export class ClientCommunicator extends Communicator {
   init({iframeContentWindow, ...rest}: InitPayload) {
     this.target = iframeContentWindow;
-    this.post({type: ClientEvents.init, payload:  rest});
+    this.post({type: ClientEvent.Init, payload: rest});
   }
   refreshToken(token: string) {
-    this.post({type: ClientEvents.refreshToken, payload: token});
+    this.post({type: ClientEvent.RefreshToken, payload: token});
   }
 }

@@ -1,12 +1,12 @@
 import {Communicator} from './Communicator';
 
-export enum VendorEvents {
-  addToCart,
-  designerHandOff,
-  requestToken,
-  projectDirty,
-  projectSaved,
-  projectDeleted,
+export enum VendorEvent {
+  AddToCart,
+  DesignerHandoff,
+  RequestToken,
+  ProjectDirty,
+  ProjectSaved,
+  ProjectDeleted,
 }
 
 interface ProjectDetails {
@@ -28,38 +28,38 @@ interface ConstructorProps {
   origin: string;
 }
 
-interface DesignerHandOffPayload extends ProjectDetails {
+interface DesignerHandoffPayload extends ProjectDetails {
   area: number;
 }
 
 export class VendorCommunicator extends Communicator {
-  constructor({origin}: ConstructorProps) {
-    super({origin});
+  constructor(origin: string) {
+    super(origin);
     this.target = window.parent;
     this.origin = origin;
   }
 
   addToCart(payload: AtcPayload) {
-    this.post({type: VendorEvents.addToCart, payload});
+    this.post({type: VendorEvent.AddToCart, payload});
   }
 
-  designerHandOff(payload: DesignerHandOffPayload) {
-    this.post({type: VendorEvents.designerHandOff, payload});
+  designerHandoff(payload: DesignerHandoffPayload) {
+    this.post({type: VendorEvent.DesignerHandoff, payload});
   }
 
   requestToken() {
-    this.post({type: VendorEvents.requestToken, payload: ''});
+    this.post({type: VendorEvent.RequestToken, payload: ''});
   }
 
   projectDirty() {
-    this.post({type: VendorEvents.projectDirty, payload: ''});
+    this.post({type: VendorEvent.ProjectDirty, payload: ''});
   }
 
   projectSaved() {
-    this.post({type: VendorEvents.projectSaved, payload: ''});
+    this.post({type: VendorEvent.ProjectSaved, payload: ''});
   }
 
   projectDeleted() {
-    this.post({type: VendorEvents.projectDeleted, payload: ''});
+    this.post({type: VendorEvent.ProjectDeleted, payload: ''});
   }
 }

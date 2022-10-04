@@ -1,3 +1,3 @@
 export {Communicator} from './classes/Communicator';
-export {VendorCommunicator, VendorEvents} from './classes/VendorCommunicator';
-export {ClientCommunicator, ClientEvents} from './classes/ClientCommunicator';
+export {VendorCommunicator, VendorEvent} from './classes/VendorCommunicator';
+export {ClientCommunicator, ClientEvent} from './classes/ClientCommunicator';
