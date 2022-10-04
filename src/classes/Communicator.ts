@@ -16,6 +16,10 @@ export class Communicator {
     this.origin = origin;
   }
 
+  updateConfig(target: Window) {
+    this.target = target;
+  }
+
   subscribe(eventType: EventType, cb: (e: MessageEvent) => void) {
     const msg = (e: MessageEvent) => {
       if (e.origin !== this.origin || e.data.type !== eventType) {

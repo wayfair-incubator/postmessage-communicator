@@ -24,10 +24,6 @@ interface AtcPayload extends ProjectDetails {
   bom: {};
 }
 
-interface ConstructorProps {
-  origin: string;
-}
-
 interface DesignerHandoffPayload extends ProjectDetails {
   area: number;
 }
