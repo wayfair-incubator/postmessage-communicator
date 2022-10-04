@@ -1,12 +1,12 @@
 import {Communicator} from './Communicator';
 
 export enum VendorEvent {
-  AddToCart,
-  DesignerHandoff,
-  RequestToken,
-  ProjectDirty,
-  ProjectSaved,
-  ProjectDeleted,
+  AddToCart = 'AddToCart',
+  DesignerHandoff = 'DesignerHandoff',
+  RequestToken = 'RequestToken',
+  ProjectDirty = 'ProjectDirty',
+  ProjectSaved = 'ProjectSaved',
+  ProjectDeleted = 'ProjectDeleted',
 }
 
 interface ProjectDetails {

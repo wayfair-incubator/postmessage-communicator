@@ -16,10 +16,7 @@ export class Communicator {
     this.origin = origin;
   }
 
-  subscribe(
-    eventType: EventType,
-    cb: (e: MessageEvent) => void
-  ) {
+  subscribe(eventType: EventType, cb: (e: MessageEvent) => void) {
     const msg = (e: MessageEvent) => {
       if (e.origin !== this.origin || e.data.type !== eventType) {
         return;

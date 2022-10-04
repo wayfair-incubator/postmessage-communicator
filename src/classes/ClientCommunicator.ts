@@ -1,8 +1,8 @@
 import {Communicator} from './Communicator';
 
 export enum ClientEvent {
-  Init,
-  RefreshToken,
+  Init = 'Init',
+  RefreshToken = 'RefreshToken',
 }
 
 interface InitPayload {
