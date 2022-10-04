@@ -15,7 +15,8 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+This is an example of how to list things you need to use the software and how to
+install them.
 
 - npm
 
@@ -37,28 +38,73 @@ This is an example of how to list things you need to use the software and how to
    npm install
    ```
 
-## Usage
+## Communicator API
 
-Use this tool to communicate across an iframe using postmessage subscription.
+### `subscribeEvent`
+
+| Parameter Name  | Required | Description                                                                 | Type                      | Default |
+| --------------- | -------- | --------------------------------------------------------------------------- | ------------------------- | ------- |
+| eventType       | yes      | the event type that you want to subscribe to                                | string                    |         |
+| messageCallBack | yes      | the callback that you want to execute when the listener receives that event | (e: MessageEvent) => void |         |
+
+### `unsubscribe`
+
+| Parameter Name  | Required | Description                                                                        | Type                      | Default |
+| --------------- | -------- | ---------------------------------------------------------------------------------- | ------------------------- | ------- |
+| messageCallBack | yes      | the subscription returned by the subscribeEvent method corresponding to this event | (e: MessageEvent) => void |         |
+
+### `post`
+
+| Parameter Name | Required | Description                                            | Type                                 | Default |
+| -------------- | -------- | ------------------------------------------------------ | ------------------------------------ | ------- |
+| type           | yes      | the name of the event you want to post eg: `addToCart` | string \| VendorEvent \| ClientEvent |         |
+| payload        | yes      | the data you want to pass in your post                 | anything but a function              |         |
+
+## Vendor Communicator API
+
+### `addToCart`
+
+### `designerHandOff`
+
+### `requestToken`
+
+### `projectDirty`
+
+### `projectSaved`
+
+### `projectDeleted`
+
+## Client Communicator API
+
+### `init`
+
+### `refreshToken`
 
 ## Roadmap
 
-See the [open issues](https://github.com/wayfair-incubator/postmessage-communicator/issues) for a list of proposed features (and known issues).
+See the
+[open issues](https://github.com/wayfair-incubator/postmessage-communicator/issues)
+for a list of proposed features (and known issues).
 
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**. For detailed contributing guidelines, please see [CONTRIBUTING.md](CONTRIBUTING.md)
+Contributions are what make the open source community such an amazing place to
+learn, inspire, and create. Any contributions you make are **greatly
+appreciated**. For detailed contributing guidelines, please see
+[CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## License
 
-Distributed under the `MIT` License. See [`LICENSE`](LICENSE) for more information.
+Distributed under the `MIT` License. See [`LICENSE`](LICENSE) for more
+information.
 
 ## Contact
 
 - [@sean_dashner](https://twitter.com/sean_dashner)
 - seandashner@gmail.com
 
-Project Link: [https://github.com/wayfair-incubator/postmessage-communicator](https://github.com/wayfair-incubator/postmessage-communicator)
+Project Link:
+[https://github.com/wayfair-incubator/postmessage-communicator](https://github.com/wayfair-incubator/postmessage-communicator)
 
 ## Acknowledgements
 

@@ -1,0 +1,39 @@
+{
+  "name": "postmessage-communicator",
+  "version": "0.0.1",
+  "description": "[![Release](https://img.shields.io/github/v/release/wayfair-incubator/oss-template?display_name=tag)](CHANGELOG.md) [![Lint](https://github.com/wayfair-incubator/oss-template/actions/workflows/lint.yml/badge.svg?branch=main)](https://github.com/wayfair-incubator/oss-template/actions/workflows/lint.yml) [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE_OF_CONDUCT.md) [![Maintainer](https://img.shields.io/badge/Maintainer-Wayfair-7F187F)](https://wayfair.github.io)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["/dist"],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wayfair-incubator/postmessage-communicator.git"
+  },
+  "keywords": [
+    "iframe",
+    "postmessage",
+    "communicator"
+  ],
+  "author": "@sean_dashner",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wayfair-incubator/postmessage-communicator/issues"
+  },
+  "homepage": "https://github.com/wayfair-incubator/postmessage-communicator#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.38.1",
+    "eslint": "^8.24.0",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.3.0",
+    "eslint-plugin-promise": "^6.0.1",
+    "prettier": "2.7.1",
+    "typescript": "^4.8.3"
+  },
+  "dependencies": {
+    "@typescript-eslint/parser": "^5.0.0"
+  }
+}
