@@ -4,6 +4,8 @@
 
 #### Chore ([sdashner](https://github.com/sdashner))
 
+No code change, updated documentation
+
 ### [0.0.1] (2022-10-5)
 
 #### New Feature ([sdashner](https://github.com/sdashner))
