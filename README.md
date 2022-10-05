@@ -40,45 +40,84 @@ install them.
 
 ## Communicator API
 
-### `subscribeEvent`
+### `subscribe`
 
-| Parameter Name  | Required | Description                                                                 | Type                      | Default |
-| --------------- | -------- | --------------------------------------------------------------------------- | ------------------------- | ------- |
-| eventType       | yes      | the event type that you want to subscribe to                                | string                    |         |
-| messageCallBack | yes      | the callback that you want to execute when the listener receives that event | (e: MessageEvent) => void |         |
+| Parameter Name | Required | Description              | Type                      | Default |
+| -------------- | -------- | ------------------------ | ------------------------- | ------- |
+| eventType      | yes      | event type to listen for | string                    |         |
+| cb             | yes      | callback fired on event  | (e: MessageEvent) => void |         |
 
 ### `unsubscribe`
 
-| Parameter Name  | Required | Description                                                                        | Type                      | Default |
-| --------------- | -------- | ---------------------------------------------------------------------------------- | ------------------------- | ------- |
-| messageCallBack | yes      | the subscription returned by the subscribeEvent method corresponding to this event | (e: MessageEvent) => void |         |
+| Parameter Name | Required | Description                       | Type                      | Default |
+| -------------- | -------- | --------------------------------- | ------------------------- | ------- |
+| cb             | yes      | callback returned as subscription | (e: MessageEvent) => void |         |
 
 ### `post`
 
-| Parameter Name | Required | Description                                            | Type                                 | Default |
-| -------------- | -------- | ------------------------------------------------------ | ------------------------------------ | ------- |
-| type           | yes      | the name of the event you want to post eg: `addToCart` | string \| VendorEvent \| ClientEvent |         |
-| payload        | yes      | the data you want to pass in your post                 | anything but a function              |         |
+| Parameter Name | Required | Description                        | Type                                 | Default |
+| -------------- | -------- | ---------------------------------- | ------------------------------------ | ------- |
+| type           | yes      | event type to post eg: `addToCart` | string \| VendorEvent \| ClientEvent |         |
+| payload        | yes      | post data                          | anything but a function              |         |
 
 ## Vendor Communicator API
 
 ### `addToCart`
 
+| Parameter Name | Required | Description            | Type   | Default   |
+| -------------- | -------- | ---------------------- | ------ | --------- |
+| customerUid    | yes      | customer identifier    | number |           |
+| projectId      | yes      | project identifier     | number |           |
+| projectVersion | no       | project version number | number | undefined |
+| brand          | yes      | brand description      | string |           |
+| style          | yes      | style description      | string |           |
+| color          | yes      | color                  | string |           |
+| url            | yes      | thumbnail image url    | string |           |
+| bom            | yes      | bill of materials      | object |           |
+
 ### `designerHandOff`
+
+| Parameter Name | Required | Description            | Type   | Default   |
+| -------------- | -------- | ---------------------- | ------ | --------- |
+| customerUid    | yes      | customer identifier    | number |           |
+| projectId      | yes      | project identifier     | number |           |
+| projectVersion | no       | project version number | number | undefined |
+| brand          | yes      | brand description      | string |           |
+| style          | yes      | style description      | string |           |
+| color          | yes      | color                  | string |           |
+| url            | yes      | thumbnail image url    | string |           |
+| area           | yes      | area of room           | number |           |
 
 ### `requestToken`
 
+no parameters
+
 ### `projectDirty`
+
+no parameters
 
 ### `projectSaved`
 
+no parameters
+
 ### `projectDeleted`
+
+no parameters
 
 ## Client Communicator API
 
 ### `init`
 
+| Parameter Name    | Required | Description                            | Type   | Default |
+| ----------------- | -------- | -------------------------------------- | ------ | ------- |
+| token             | yes      | JWT token with initialization payload  | string |         |
+| landingExperience | yes      | requested landing page for application | string |         |
+
 ### `refreshToken`
+
+| Parameter Name | Required | Description                           | Type   | Default |
+| -------------- | -------- | ------------------------------------- | ------ | ------- |
+| token          | yes      | JWT token with initialization payload | string |         |
 
 ## Roadmap
 

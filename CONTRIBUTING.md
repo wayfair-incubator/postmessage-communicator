@@ -45,3 +45,13 @@ and fix existing bugs. Here is what you can do:
 Thanks again for your interest on contributing to `postmessage-communicator`!
 
 :heart:
+
+## Development
+
+### To Build
+```
+yarn
+yarn tsc
+```
+
+Use `yarn link` to connect experimental library to an application in development.
