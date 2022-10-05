@@ -62,7 +62,7 @@ Thanks again for your interest on contributing to `postmessage-communicator`!
 
 ### To Build
 
-```
+```bash
 yarn
 yarn tsc
 ```
