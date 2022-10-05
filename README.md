@@ -18,10 +18,10 @@ To get a local copy up and running follow these simple steps.
 This is an example of how to list things you need to use the software and how to
 install them.
 
-- npm
+- yarn
 
   ```sh
-  npm install npm@latest -g
+  npm install --global yarn
   ```
 
 ### Installation
@@ -32,10 +32,11 @@ install them.
    git clone https://github.com/wayfair-incubator/postmessage-communicator.git
    ```
 
-2. Install NPM packages
+2. Install yarn packages and compile typescript code
 
    ```sh
-   npm install
+   yarn
+   yarn tsc
    ```
 
 ## Communicator API
