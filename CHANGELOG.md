@@ -1,13 +1,17 @@
 # Changelog
 
-## [0.0.1] (2022-10-5)
+All notable changes to this project will be documented in this file.
 
-### New Feature ([sdashner](https://github.com/sdashner))
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to
+[Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-Add Classes and business logic for messenger library.
+## [Unreleased]
 
-## [0.0.0] (2022-9-22)
+### TBA
 
-### Creation ([GaryPWhite](https://github.com/GaryPWhite))
+## [v0.1.0] - 2022-10-05
 
-Init postmessage-communicator library
+### Added
+
+- Add initial library API:
