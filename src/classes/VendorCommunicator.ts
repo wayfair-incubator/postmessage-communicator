@@ -28,7 +28,7 @@ interface EventPayload {
   projectId: string;
   versionId: number;
   metadata: MetaData;
-  bom?: {};
+  bom?: any;
 }
 
 export class VendorCommunicator extends Communicator {
@@ -38,39 +38,39 @@ export class VendorCommunicator extends Communicator {
     this.origin = origin;
   }
 
-  addToCart(payload: EventPayload) {
+  addToCart(payload: EventPayload): void {
     this.post({type: VendorEvent.AddToCart, payload});
   }
 
-  appInitialized() {
+  appInitialized(): void {
     this.post({type: VendorEvent.AddToCart});
   }
 
-  contactDesigner(payload: EventPayload) {
+  contactDesigner(payload: EventPayload): void {
     this.post({type: VendorEvent.ContactDesigner, payload});
   }
 
-  dirtyStateChanged() {
+  dirtyStateChanged(): void {
     this.post({type: VendorEvent.DirtyStateChanged});
   }
 
-  iframeLoaded() {
+  iframeLoaded(): void {
     this.post({type: VendorEvent.IframeLoaded});
   }
 
-  projectSaved() {
+  projectSaved(): void {
     this.post({type: VendorEvent.ProjectSaved});
   }
 
-  projectDeleted() {
+  projectDeleted(): void {
     this.post({type: VendorEvent.ProjectDeleted});
   }
 
-  tokenRefreshRequested() {
+  tokenRefreshRequested(): void {
     this.post({type: VendorEvent.TokenRefreshRequested});
   }
 
-  unauthorizedToken(error: string) {
+  unauthorizedToken(error: string): void {
     this.post({type: VendorEvent.UnauthorizedToken, payload: error});
   }
 }

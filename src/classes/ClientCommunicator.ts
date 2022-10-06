@@ -11,10 +11,10 @@ interface InitPayload {
 }
 
 export class ClientCommunicator extends Communicator {
-  init(payload: InitPayload) {
+  init(payload: InitPayload): void {
     this.post({type: ClientEvent.LoginWithToken, payload});
   }
-  refreshWithToken(token: string) {
+  refreshWithToken(token: string): void {
     this.post({type: ClientEvent.RefreshWithToken, payload: token});
   }
 }
