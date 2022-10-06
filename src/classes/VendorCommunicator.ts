@@ -12,7 +12,7 @@ export enum VendorEvent {
   UnauthorizedToken = 'UnauthorizedToken',
 }
 
-interface MetaData {
+interface Metadata {
   title: string;
   brand: string;
   style: string;
@@ -27,7 +27,7 @@ interface EventPayload {
   customerId: string;
   projectId: string;
   versionId: number;
-  metadata: MetaData;
+  metadata: Metadata;
   bom?: any;
 }
 
