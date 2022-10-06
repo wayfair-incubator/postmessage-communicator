@@ -2,30 +2,33 @@ import {Communicator} from './Communicator';
 
 export enum VendorEvent {
   AddToCart = 'AddToCart',
-  DesignerHandoff = 'DesignerHandoff',
-  RequestToken = 'RequestToken',
-  ProjectDirty = 'ProjectDirty',
+  AppInitialized = 'AppInitialized',
+  ContactDesigner = 'ContactDesigner',
+  DirtyStateChanged = 'DirtyStateChanged',
+  IframeLoaded = 'IframeLoaded',
   ProjectSaved = 'ProjectSaved',
   ProjectDeleted = 'ProjectDeleted',
+  TokenRefreshRequested = 'TokenRefreshRequested',
+  UnauthorizedToken = 'UnauthorizedToken',
 }
 
-interface ProjectDetails {
-  customerUid: number;
-  projectId: number;
-  projectVersion?: number;
+interface MetaData {
+  title: string;
   brand: string;
   style: string;
   color: string;
-  url: string;
+  thumbnailUri: string;
+  area?: number;
 }
 
-interface AtcPayload extends ProjectDetails {
-  //TODO: match this with correct formatting
-  bom: {};
-}
-
-interface DesignerHandoffPayload extends ProjectDetails {
-  area: number;
+interface EventPayload {
+  schema: string;
+  token: string;
+  customerId: string;
+  projectId: string;
+  versionId: number;
+  metadata: MetaData;
+  bom?: {};
 }
 
 export class VendorCommunicator extends Communicator {
@@ -35,27 +38,39 @@ export class VendorCommunicator extends Communicator {
     this.origin = origin;
   }
 
-  addToCart(payload: AtcPayload) {
+  addToCart(payload: EventPayload) {
     this.post({type: VendorEvent.AddToCart, payload});
   }
 
-  designerHandoff(payload: DesignerHandoffPayload) {
-    this.post({type: VendorEvent.DesignerHandoff, payload});
+  appInitialized() {
+    this.post({type: VendorEvent.AddToCart});
   }
 
-  requestToken() {
-    this.post({type: VendorEvent.RequestToken, payload: ''});
+  contactDesigner(payload: EventPayload) {
+    this.post({type: VendorEvent.ContactDesigner, payload});
   }
 
-  projectDirty() {
-    this.post({type: VendorEvent.ProjectDirty, payload: ''});
+  dirtyStateChanged() {
+    this.post({type: VendorEvent.DirtyStateChanged});
+  }
+
+  iframeLoaded() {
+    this.post({type: VendorEvent.IframeLoaded});
   }
 
   projectSaved() {
-    this.post({type: VendorEvent.ProjectSaved, payload: ''});
+    this.post({type: VendorEvent.ProjectSaved});
   }
 
   projectDeleted() {
-    this.post({type: VendorEvent.ProjectDeleted, payload: ''});
+    this.post({type: VendorEvent.ProjectDeleted});
+  }
+
+  tokenRefreshRequested() {
+    this.post({type: VendorEvent.TokenRefreshRequested});
+  }
+
+  unauthorizedToken(error: string) {
+    this.post({type: VendorEvent.UnauthorizedToken, payload: error});
   }
 }

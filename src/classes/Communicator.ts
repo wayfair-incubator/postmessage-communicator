@@ -5,7 +5,7 @@ type EventType = VendorEvent | ClientEvent | string;
 
 interface CommunicatorEvent {
   type: EventType;
-  payload: any;
+  payload?: any;
 }
 
 export class Communicator {
@@ -35,7 +35,7 @@ export class Communicator {
     window.removeEventListener('message', cb);
   }
 
-  post(payload: CommunicatorEvent) {
-    this.target.postMessage(payload, this.origin);
+  post({type, payload = ''}: CommunicatorEvent) {
+    this.target.postMessage({type, payload}, this.origin);
   }
 }
