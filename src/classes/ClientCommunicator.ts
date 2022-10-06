@@ -1,8 +1,8 @@
 import {Communicator} from './Communicator';
 
 export enum ClientEvent {
-  Init = 'Init',
-  RefreshToken = 'RefreshToken',
+  LoginWithToken = 'LoginWithToken',
+  RefreshWithToken = 'RefreshToken',
 }
 
 interface InitPayload {
@@ -12,9 +12,9 @@ interface InitPayload {
 
 export class ClientCommunicator extends Communicator {
   init(payload: InitPayload) {
-    this.post({type: ClientEvent.Init, payload});
+    this.post({type: ClientEvent.LoginWithToken, payload});
   }
-  refreshToken(token: string) {
-    this.post({type: ClientEvent.RefreshToken, payload: token});
+  refreshWithToken(token: string) {
+    this.post({type: ClientEvent.RefreshWithToken, payload: token});
   }
 }
