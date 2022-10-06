@@ -4,25 +4,18 @@ module.exports = {
     ecmaVersion: 2020,
     sourceType: 'module',
   },
-  extends: [
-    'plugin:@typescript-eslint/recommended',
-    'plugin:jsdoc/recommended',
-    // Make sure this is always the last configuration in the extends array.
-    'plugin:prettier/recommended',
-  ],
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
+  plugins: ['@typescript-eslint/eslint-plugin'],
   rules: {
     '@typescript-eslint/no-unused-vars': 'error',
     '@typescript-eslint/explicit-module-boundary-types': 'error',
-    '@typescript-eslint/no-non-null-assertion': 'error',
+    '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/ban-ts-comment': 'error',
   },
   overrides: [
     {
       files: ['**/__tests__/**/*'],
-      rules: {
-        'jsdoc/require-jsdoc': 'off',
-      },
     },
   ],
 };

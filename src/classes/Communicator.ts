@@ -3,6 +3,8 @@ import {ClientEvent} from './ClientCommunicator';
 
 type EventType = VendorEvent | ClientEvent | string;
 
+type CallBack = (e: MessageEvent) => void;
+
 interface CommunicatorEvent {
   type: EventType;
   payload?: any;
@@ -16,11 +18,11 @@ export class Communicator {
     this.origin = origin;
   }
 
-  updateConfig(target: Window) {
+  updateConfig(target: Window): void {
     this.target = target;
   }
 
-  subscribe(eventType: EventType, cb: (e: MessageEvent) => void) {
+  subscribe(eventType: EventType, cb: CallBack): CallBack {
     const msg = (e: MessageEvent) => {
       if (e.origin !== this.origin || e.data.type !== eventType) {
         return;
@@ -31,11 +33,11 @@ export class Communicator {
     return msg;
   }
 
-  unsubscribe(cb: (e: MessageEvent) => void) {
+  unsubscribe(cb: CallBack): void {
     window.removeEventListener('message', cb);
   }
 
-  post({type, payload = ''}: CommunicatorEvent) {
+  post({type, payload = ''}: CommunicatorEvent): void {
     this.target.postMessage({type, payload}, this.origin);
   }
 }
