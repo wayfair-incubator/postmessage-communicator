@@ -67,22 +67,22 @@ install them.
 
 | Parameter Name | Required | Description            | Type   | Default   |
 | -------------- | -------- | ---------------------- | ------ | --------- |
-| customerUid    | yes      | customer identifier    | number |           |
-| projectId      | yes      | project identifier     | number |           |
-| projectVersion | no       | project version number | number | undefined |
+| customerUid    | yes      | customer identifier    | string |           |
+| projectId      | yes      | project identifier     | string |           |
+| projectVersion | no       | project version        | string |           |
 | brand          | yes      | brand description      | string |           |
 | style          | yes      | style description      | string |           |
 | color          | yes      | color                  | string |           |
 | url            | yes      | thumbnail image url    | string |           |
-| bom            | yes      | bill of materials      | object |           |
+| bom            | yes      | bill of materials      | string |           |
 
 ### `designerHandOff`
 
 | Parameter Name | Required | Description            | Type   | Default   |
 | -------------- | -------- | ---------------------- | ------ | --------- |
-| customerUid    | yes      | customer identifier    | number |           |
-| projectId      | yes      | project identifier     | number |           |
-| projectVersion | no       | project version number | number | undefined |
+| customerUid    | yes      | customer identifier    | string |           |
+| projectId      | yes      | project identifier     | string |           |
+| projectVersion | no       | project version        | string |           |
 | brand          | yes      | brand description      | string |           |
 | style          | yes      | style description      | string |           |
 | color          | yes      | color                  | string |           |
@@ -142,6 +142,7 @@ information.
 
 - [@sean_dashner](https://twitter.com/sean_dashner)
 - seandashner@gmail.com
+- coutinho.dominic@outlook.com
 
 Project Link:
 [https://github.com/wayfair-incubator/postmessage-communicator](https://github.com/wayfair-incubator/postmessage-communicator)
