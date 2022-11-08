@@ -10,6 +10,15 @@ and this project adheres to
 
 ### TBA
 
+## [v2.0.0] - 2022-11-08
+
+- Renamed thumbnailUri to thumbnailUrl
+- Changed datatype of ProjectVersion from number to string
+
+### Added
+
+- Public release
+
 ## [v1.0.0] - 2022-10-05
 
 ### Added
