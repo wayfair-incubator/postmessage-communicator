@@ -17,7 +17,7 @@ interface Metadata {
   brand: string;
   style: string;
   color: string;
-  thumbnailUri: string;
+  thumbnailUrl: string;
   area?: number;
 }
 
@@ -26,7 +26,7 @@ interface EventPayload {
   token: string;
   customerId: string;
   projectId: string;
-  versionId: number;
+  versionId: string;
   metadata: Metadata;
   bom?: any;
 }
