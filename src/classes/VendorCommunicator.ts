@@ -5,9 +5,10 @@ export enum VendorEvent {
   AppInitialized = 'AppInitialized',
   ContactDesigner = 'ContactDesigner',
   DirtyStateChanged = 'DirtyStateChanged',
-  IframeLoaded = 'IframeLoaded',
-  ProjectSaved = 'ProjectSaved',
+  iFrameLoaded = 'iFrameLoaded',
   ProjectDeleted = 'ProjectDeleted',
+  ProjectSaved = 'ProjectSaved',
+  TrackingEvent = 'TrackingEvent',
   TokenRefreshRequested = 'TokenRefreshRequested',
   UnauthorizedToken = 'UnauthorizedToken',
 }
@@ -29,6 +30,11 @@ interface EventPayload {
   versionId: string;
   metadata: Metadata;
   bom?: any;
+}
+
+interface TrackingEvent {
+  actionName: string;
+  actionData: Record<string, unknown>;
 }
 
 export class VendorCommunicator extends Communicator {
@@ -55,7 +61,7 @@ export class VendorCommunicator extends Communicator {
   }
 
   iframeLoaded(): void {
-    this.post({type: VendorEvent.IframeLoaded});
+    this.post({type: VendorEvent.iFrameLoaded});
   }
 
   projectSaved(): void {
@@ -64,6 +70,10 @@ export class VendorCommunicator extends Communicator {
 
   projectDeleted(): void {
     this.post({type: VendorEvent.ProjectDeleted});
+  }
+
+  trackEvent(payload: TrackingEvent): void {
+    this.post({type: VendorEvent.TrackingEvent, payload});
   }
 
   tokenRefreshRequested(): void {

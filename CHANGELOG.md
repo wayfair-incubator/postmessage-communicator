@@ -10,6 +10,11 @@ and this project adheres to
 
 ### TBA
 
+## [v3.0.0] - 2022-11-08
+
+- Update event names to match existing wording
+- Create tracking event on VendorClient
+
 ## [v2.0.0] - 2022-11-08
 
 - Renamed thumbnailUri to thumbnailUrl

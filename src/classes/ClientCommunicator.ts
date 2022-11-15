@@ -2,7 +2,7 @@ import {Communicator} from './Communicator';
 
 export enum ClientEvent {
   LoginWithToken = 'LoginWithToken',
-  RefreshWithToken = 'RefreshToken',
+  RefreshWithToken = 'RefreshWithToken',
 }
 
 interface InitPayload {
