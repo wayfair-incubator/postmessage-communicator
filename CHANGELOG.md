@@ -10,7 +10,7 @@ and this project adheres to
 
 ### TBA
 
-## [v4.0.0] - 2022-11-08
+## [v4.0.0] - 2022-11-23
 
 - Update Metadata shape to add source and price
 
