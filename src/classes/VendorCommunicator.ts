@@ -14,12 +14,14 @@ export enum VendorEvent {
 }
 
 interface Metadata {
+  source?: string;
   title: string;
   brand: string;
   style: string;
   color: string;
   thumbnailUrl: string;
   area?: number;
+  price?: number;
 }
 
 interface EventPayload {
