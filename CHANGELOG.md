@@ -10,6 +10,10 @@ and this project adheres to
 
 ### TBA
 
+## [v4.0.0] - 2022-11-08
+
+- Update Metadata shape to add source and price
+
 ## [v3.0.0] - 2022-11-08
 
 - Update event names to match existing wording
