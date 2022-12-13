@@ -6,6 +6,7 @@ export enum VendorEvent {
   ContactDesigner = 'ContactDesigner',
   DirtyStateChanged = 'DirtyStateChanged',
   iFrameLoaded = 'iFrameLoaded',
+  iFrameRedirect = 'iFrameRedirect',
   ProjectDeleted = 'ProjectDeleted',
   ProjectSaved = 'ProjectSaved',
   TrackingEvent = 'TrackingEvent',
@@ -39,6 +40,35 @@ interface TrackingEvent {
   actionData: Record<string, unknown>;
 }
 
+interface ProjectSavedPayload {
+  message: string;
+  customerId: string;
+  projectId: string;
+  versionId: string;
+}
+
+interface ProjectDeletedPayload {
+  message: string;
+  customerId: string;
+  projectId: string;
+}
+
+interface DirtyStateChangedPayload {
+  message: string;
+  isDirty: boolean;
+}
+
+interface iFrameRedirectPayload {
+  message: string;
+  app: string;
+  key: string;
+}
+
+interface TokenRefreshRequestedPayload {
+  message: string;
+  uuid: string; 
+}
+
 export class VendorCommunicator extends Communicator {
   constructor(origin: string) {
     super(origin);
@@ -50,36 +80,40 @@ export class VendorCommunicator extends Communicator {
     this.post({type: VendorEvent.AddToCart, payload});
   }
 
-  appInitialized(): void {
-    this.post({type: VendorEvent.AddToCart});
+  appInitialized(message: string): void {
+    this.post({type: VendorEvent.AddToCart, payload: message});
   }
 
   contactDesigner(payload: EventPayload): void {
     this.post({type: VendorEvent.ContactDesigner, payload});
   }
 
-  dirtyStateChanged(): void {
-    this.post({type: VendorEvent.DirtyStateChanged});
+  dirtyStateChanged(payload: DirtyStateChangedPayload): void {
+    this.post({type: VendorEvent.DirtyStateChanged, payload});
   }
 
-  iframeLoaded(): void {
-    this.post({type: VendorEvent.iFrameLoaded});
+  iframeLoaded(message: string): void {
+    this.post({type: VendorEvent.iFrameLoaded, payload: message});
+  }
+  
+  iframeRedirect(payload: iFrameRedirectPayload): void {
+    this.post({type: VendorEvent.iFrameRedirect, payload});
   }
 
-  projectSaved(): void {
-    this.post({type: VendorEvent.ProjectSaved});
+  projectSaved(payload: ProjectSavedPayload): void {
+    this.post({type: VendorEvent.ProjectSaved, payload});
   }
 
-  projectDeleted(): void {
-    this.post({type: VendorEvent.ProjectDeleted});
+  projectDeleted(payload: ProjectDeletedPayload): void {
+    this.post({type: VendorEvent.ProjectDeleted, payload});
   }
 
   trackEvent(payload: TrackingEvent): void {
     this.post({type: VendorEvent.TrackingEvent, payload});
   }
 
-  tokenRefreshRequested(): void {
-    this.post({type: VendorEvent.TokenRefreshRequested});
+  tokenRefreshRequested(payload: TokenRefreshRequestedPayload): void {
+    this.post({type: VendorEvent.TokenRefreshRequested, payload});
   }
 
   unauthorizedToken(error: string): void {
