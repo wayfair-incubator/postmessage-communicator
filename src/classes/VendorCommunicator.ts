@@ -14,7 +14,7 @@ export enum VendorEvent {
   UnauthorizedToken = 'UnauthorizedToken',
 }
 
-interface Metadata {
+interface AddToCartMetadata {
   source?: string;
   title: string;
   brand: string;
@@ -23,15 +23,36 @@ interface Metadata {
   thumbnailUrl: string;
   area?: number;
   price?: number;
+  retailPrice?: number;
 }
 
-interface EventPayload {
+interface AddToCartPayload {
   schema: string;
   token: string;
   customerId: string;
   projectId: string;
   versionId: string;
-  metadata: Metadata;
+  metadata: AddToCartMetadata;
+  bom?: any;
+}
+
+interface DesignerMetadata {
+  source?: string;
+  title: string;
+  brand: string;
+  style: string;
+  color: string;
+  thumbnailUrl: string;
+  area?: number;
+}
+
+interface ConsultDesignerPayload {
+  schema: string;
+  token: string;
+  customerId: string;
+  projectId: string;
+  versionId: string;
+  metadata: ConsultDesignerMetadata;
   bom?: any;
 }
 
@@ -76,7 +97,7 @@ export class VendorCommunicator extends Communicator {
     this.origin = origin;
   }
 
-  addToCart(payload: EventPayload): void {
+  addToCart(payload: AddToCartPayload): void {
     this.post({type: VendorEvent.AddToCart, payload});
   }
 
@@ -84,7 +105,7 @@ export class VendorCommunicator extends Communicator {
     this.post({type: VendorEvent.AddToCart, payload: message});
   }
 
-  contactDesigner(payload: EventPayload): void {
+  contactDesigner(payload: ConsultDesignerPayload): void {
     this.post({type: VendorEvent.ContactDesigner, payload});
   }
 
