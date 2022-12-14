@@ -66,7 +66,7 @@ interface iFrameRedirectPayload {
 
 interface TokenRefreshRequestedPayload {
   message: string;
-  uuid: string; 
+  requestId: string; 
 }
 
 export class VendorCommunicator extends Communicator {
