@@ -14,80 +14,62 @@ export enum VendorEvent {
   UnauthorizedToken = 'UnauthorizedToken',
 }
 
-interface AddToCartMetadata {
-  source?: string;
+interface CommonPayload {
+  message?: string;
+  token: string;
+  customerId: string;
+}
+
+interface CommonMetadata {
   title: string;
   brand: string;
   style: string;
   color: string;
-  thumbnailUrl: string;
-  area?: number;
-  price?: number;
+  price: number;
   retailPrice?: number;
+  thumbnailUrl?: string;
+  [key: string]: string | number | undefined;
 }
 
-interface AddToCartPayload {
-  schema: string;
-  token: string;
-  customerId: string;
-  projectId: string;
-  versionId: string;
-  metadata: AddToCartMetadata;
-  bom?: any;
-}
-
-interface DesignerMetadata {
+interface CabinetsMetadata extends CommonMetadata {
   source?: string;
-  title: string;
-  brand: string;
-  style: string;
-  color: string;
-  thumbnailUrl: string;
   area?: number;
 }
 
-interface ConsultDesignerPayload {
+interface SnapshotPayload<M extends CommonMetadata> extends CommonPayload {
   schema: string;
-  token: string;
-  customerId: string;
   projectId: string;
   versionId: string;
-  metadata: ConsultDesignerMetadata;
-  bom?: any;
+  metadata: M;
+  bom: string;
 }
 
-interface TrackingEvent {
-  actionName: string;
-  actionData: Record<string, unknown>;
-}
-
-interface ProjectSavedPayload {
-  message: string;
-  customerId: string;
+interface ProjectSavedPayload extends CommonPayload {
   projectId: string;
-  versionId: string;
+  versionId?: string;
 }
 
-interface ProjectDeletedPayload {
-  message: string;
-  customerId: string;
+interface ProjectDeletedPayload extends CommonPayload {
   projectId: string;
 }
 
-interface DirtyStateChangedPayload {
-  message: string;
+interface DirtyStateChangedPayload extends CommonPayload {
+  projectId: string;
   isDirty: boolean;
 }
 
-interface iFrameRedirectPayload {
-  message: string;
+interface iFrameRedirectPayload extends CommonPayload {
   app: string;
   key: string;
 }
 
-interface TokenRefreshRequestedPayload {
-  message: string;
+interface TokenRefreshRequestedPayload extends CommonPayload {
   requestId: string; 
+}
+
+interface TrackingEventPayload {
+  actionName: string;
+  actionData: Record<string, unknown>;
 }
 
 export class VendorCommunicator extends Communicator {
@@ -97,28 +79,16 @@ export class VendorCommunicator extends Communicator {
     this.origin = origin;
   }
 
-  addToCart(payload: AddToCartPayload): void {
-    this.post({type: VendorEvent.AddToCart, payload});
-  }
-
   appInitialized(message: string): void {
     this.post({type: VendorEvent.AddToCart, payload: message});
   }
 
-  contactDesigner(payload: ConsultDesignerPayload): void {
+  addToCart(payload: SnapshotPayload<CabinetsMetadata>): void {
+    this.post({type: VendorEvent.AddToCart, payload});
+  }
+
+  contactDesigner(payload: SnapshotPayload<CabinetsMetadata>): void {
     this.post({type: VendorEvent.ContactDesigner, payload});
-  }
-
-  dirtyStateChanged(payload: DirtyStateChangedPayload): void {
-    this.post({type: VendorEvent.DirtyStateChanged, payload});
-  }
-
-  iframeLoaded(message: string): void {
-    this.post({type: VendorEvent.iFrameLoaded, payload: message});
-  }
-  
-  iframeRedirect(payload: iFrameRedirectPayload): void {
-    this.post({type: VendorEvent.iFrameRedirect, payload});
   }
 
   projectSaved(payload: ProjectSavedPayload): void {
@@ -129,8 +99,8 @@ export class VendorCommunicator extends Communicator {
     this.post({type: VendorEvent.ProjectDeleted, payload});
   }
 
-  trackEvent(payload: TrackingEvent): void {
-    this.post({type: VendorEvent.TrackingEvent, payload});
+  dirtyStateChanged(payload: DirtyStateChangedPayload): void {
+    this.post({type: VendorEvent.DirtyStateChanged, payload});
   }
 
   tokenRefreshRequested(payload: TokenRefreshRequestedPayload): void {
@@ -139,5 +109,17 @@ export class VendorCommunicator extends Communicator {
 
   unauthorizedToken(error: string): void {
     this.post({type: VendorEvent.UnauthorizedToken, payload: error});
+  }
+
+  iframeLoaded(message: string): void {
+    this.post({type: VendorEvent.iFrameLoaded, payload: message});
+  }
+  
+  iframeRedirect(payload: iFrameRedirectPayload): void {
+    this.post({type: VendorEvent.iFrameRedirect, payload});
+  }
+
+  trackEvent(payload: TrackingEventPayload): void {
+    this.post({type: VendorEvent.TrackingEvent, payload});
   }
 }
