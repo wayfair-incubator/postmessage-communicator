@@ -58,9 +58,10 @@ interface DirtyStateChangedPayload extends CommonPayload {
   isDirty: boolean;
 }
 
+// TODO: (IW) This is pretty vendor-specific, should be typed to vendor apps
 interface iFrameRedirectPayload extends CommonPayload {
   app: string;
-  key: string;
+  key?: string | number;
 }
 
 interface TokenRefreshRequestedPayload extends CommonPayload {
