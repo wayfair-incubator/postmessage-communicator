@@ -104,6 +104,18 @@ no parameters
 ### `projectDeleted`
 
 no parameters
+### `continueToCart`
+
+| Parameter Name | Required | Description            | Type   | Default   |
+| -------------- | -------- | ---------------------- | ------ | --------- |
+| customerUid    | yes      | customer identifier    | string |           |
+| projectId      | yes      | project identifier     | string |           |
+| projectVersion | no       | project version        | string |           |
+| brand          | yes      | brand description      | string |           |
+| style          | yes      | style description      | string |           |
+| color          | yes      | color                  | string |           |
+| url            | yes      | thumbnail image url    | string |           |
+| bom            | yes      | bill of materials      | string |           |
 
 ## Client Communicator API
 
@@ -119,6 +131,15 @@ no parameters
 | Parameter Name | Required | Description                           | Type   | Default |
 | -------------- | -------- | ------------------------------------- | ------ | ------- |
 | token          | yes      | JWT token with initialization payload | string |         |
+
+### `addToCartStatus`
+
+| Parameter Name    | Required | Description                                              | Type   | Default |
+| ----------------- | -------- | -------------------------------------------------------- | ------ | ------- |
+| success           | yes      | flag indicating if the add to cart event succeded or not | boolean|         |
+| message           | yes      | status message                                           | string |         |
+| projectId         | yes      | project id                                               | string |         |
+| versionId         | yes      | project version                                          | string |         |
 
 ## Roadmap
 

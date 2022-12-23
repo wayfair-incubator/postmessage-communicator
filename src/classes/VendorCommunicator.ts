@@ -86,6 +86,7 @@ export class VendorCommunicator extends Communicator {
   unauthorizedToken(error: string): void {
     this.post({type: VendorEvent.UnauthorizedToken, payload: error});
   }
+
   continueToCart(payload: EventPayload): void {
     this.post({type: VendorEvent.ContinueToCart, payload})
   }
