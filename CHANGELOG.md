@@ -10,6 +10,11 @@ and this project adheres to
 
 ### TBA
 
+## [v4.1.0] - 2022-12-23
+
+- Added Continue to Cart Event to the Vendor Communicator
+- Added Add To Cart Status Event to the Client Communicator
+
 ## [v4.0.0] - 2022-11-23
 
 - Update Metadata shape to add source and price

@@ -11,6 +11,7 @@ export enum VendorEvent {
   TrackingEvent = 'TrackingEvent',
   TokenRefreshRequested = 'TokenRefreshRequested',
   UnauthorizedToken = 'UnauthorizedToken',
+  ContinueToCart = 'ContinueToCart',
 }
 
 interface Metadata {
@@ -84,5 +85,9 @@ export class VendorCommunicator extends Communicator {
 
   unauthorizedToken(error: string): void {
     this.post({type: VendorEvent.UnauthorizedToken, payload: error});
+  }
+
+  continueToCart(payload: EventPayload): void {
+    this.post({type: VendorEvent.ContinueToCart, payload})
   }
 }
