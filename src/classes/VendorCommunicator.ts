@@ -11,7 +11,7 @@ export enum VendorEvent {
   TrackingEvent = 'TrackingEvent',
   TokenRefreshRequested = 'TokenRefreshRequested',
   UnauthorizedToken = 'UnauthorizedToken',
-  continueToCart = 'ContinueToCart',
+  ContinueToCart = 'ContinueToCart',
 }
 
 interface Metadata {
