@@ -104,6 +104,7 @@ no parameters
 ### `projectDeleted`
 
 no parameters
+
 ### `continueToCart`
 
 | Parameter Name | Required | Description            | Type   | Default   |
