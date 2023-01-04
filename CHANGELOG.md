@@ -10,6 +10,10 @@ and this project adheres to
 
 ### TBA
 
+## [v5.0.0] - 2021-01-04
+
+- Updated event types and payloads in Vendor Communicator
+
 ## [v4.1.0] - 2022-12-23
 
 - Added Continue to Cart Event to the Vendor Communicator

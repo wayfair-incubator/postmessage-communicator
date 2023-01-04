@@ -1,41 +1,75 @@
 import {Communicator} from './Communicator';
 
 export enum VendorEvent {
-  AddToCart = 'AddToCart',
   AppInitialized = 'AppInitialized',
-  ContactDesigner = 'ContactDesigner',
-  DirtyStateChanged = 'DirtyStateChanged',
   iFrameLoaded = 'iFrameLoaded',
-  ProjectDeleted = 'ProjectDeleted',
+  iFrameRedirect = 'iFrameRedirect',
+  DirtyStateChanged = 'DirtyStateChanged',
   ProjectSaved = 'ProjectSaved',
-  TrackingEvent = 'TrackingEvent',
+  ProjectDeleted = 'ProjectDeleted',
+  ContactDesigner = 'ContactDesigner',
+  AddToCart = 'AddToCart',
+  ContinueToCart = 'ContinueToCart',
   TokenRefreshRequested = 'TokenRefreshRequested',
   UnauthorizedToken = 'UnauthorizedToken',
-  ContinueToCart = 'ContinueToCart',
+  TrackingEvent = 'TrackingEvent',
 }
 
-interface Metadata {
-  source?: string;
+interface CommonPayload {
+  message?: string;
+  token: string;
+  customerId: string;
+}
+
+interface CommonMetadata {
   title: string;
   brand: string;
   style: string;
   color: string;
-  thumbnailUrl: string;
-  area?: number;
-  price?: number;
+  price: number;
+  retailPrice?: number;
+  thumbnailUrl?: string;
+  [key: string]: string | number | undefined;
 }
 
-interface EventPayload {
+interface CabinetsMetadata extends CommonMetadata {
+  source?: string;
+  area?: number;
+}
+
+interface SnapshotPayload<M extends CommonMetadata> extends CommonPayload {
   schema: string;
-  token: string;
-  customerId: string;
   projectId: string;
   versionId: string;
-  metadata: Metadata;
-  bom?: any;
+  metadata: M;
+  bom: string;
 }
 
-interface TrackingEvent {
+interface ProjectSavedPayload extends CommonPayload {
+  projectId: string;
+  versionId?: string;
+}
+
+interface ProjectDeletedPayload extends CommonPayload {
+  projectId: string;
+}
+
+interface DirtyStateChangedPayload extends CommonPayload {
+  projectId: string;
+  isDirty: boolean;
+}
+
+// TODO: (IW) This is pretty vendor-specific, should be typed to vendor apps
+interface iFrameRedirectPayload extends CommonPayload {
+  app: string;
+  key?: string | number;
+}
+
+interface TokenRefreshRequestedPayload extends CommonPayload {
+  requestId: string;
+}
+
+interface TrackingEventPayload {
   actionName: string;
   actionData: Record<string, unknown>;
 }
@@ -47,47 +81,51 @@ export class VendorCommunicator extends Communicator {
     this.origin = origin;
   }
 
-  addToCart(payload: EventPayload): void {
-    this.post({type: VendorEvent.AddToCart, payload});
+  appInitialized(message: string): void {
+    this.post({type: VendorEvent.AppInitialized, payload: message});
   }
 
-  appInitialized(): void {
-    this.post({type: VendorEvent.AddToCart});
+  iframeLoaded(message: string): void {
+    this.post({type: VendorEvent.iFrameLoaded, payload: message});
   }
 
-  contactDesigner(payload: EventPayload): void {
+  iframeRedirect(payload: iFrameRedirectPayload): void {
+    this.post({type: VendorEvent.iFrameRedirect, payload});
+  }
+
+  dirtyStateChanged(payload: DirtyStateChangedPayload): void {
+    this.post({type: VendorEvent.DirtyStateChanged, payload});
+  }
+
+  projectSaved(payload: ProjectSavedPayload): void {
+    this.post({type: VendorEvent.ProjectSaved, payload});
+  }
+
+  projectDeleted(payload: ProjectDeletedPayload): void {
+    this.post({type: VendorEvent.ProjectDeleted, payload});
+  }
+
+  contactDesigner(payload: SnapshotPayload<CabinetsMetadata>): void {
     this.post({type: VendorEvent.ContactDesigner, payload});
   }
 
-  dirtyStateChanged(): void {
-    this.post({type: VendorEvent.DirtyStateChanged});
+  addToCart(payload: SnapshotPayload<CabinetsMetadata>): void {
+    this.post({type: VendorEvent.AddToCart, payload});
   }
 
-  iframeLoaded(): void {
-    this.post({type: VendorEvent.iFrameLoaded});
+  continueToCart(payload: SnapshotPayload<CabinetsMetadata>): void {
+    this.post({type: VendorEvent.ContinueToCart, payload});
   }
 
-  projectSaved(): void {
-    this.post({type: VendorEvent.ProjectSaved});
-  }
-
-  projectDeleted(): void {
-    this.post({type: VendorEvent.ProjectDeleted});
-  }
-
-  trackEvent(payload: TrackingEvent): void {
-    this.post({type: VendorEvent.TrackingEvent, payload});
-  }
-
-  tokenRefreshRequested(): void {
-    this.post({type: VendorEvent.TokenRefreshRequested});
+  tokenRefreshRequested(payload: TokenRefreshRequestedPayload): void {
+    this.post({type: VendorEvent.TokenRefreshRequested, payload});
   }
 
   unauthorizedToken(error: string): void {
     this.post({type: VendorEvent.UnauthorizedToken, payload: error});
   }
 
-  continueToCart(payload: EventPayload): void {
-    this.post({type: VendorEvent.ContinueToCart, payload})
+  trackEvent(payload: TrackingEventPayload): void {
+    this.post({type: VendorEvent.TrackingEvent, payload});
   }
 }
