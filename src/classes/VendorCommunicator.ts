@@ -1,17 +1,18 @@
 import {Communicator} from './Communicator';
 
 export enum VendorEvent {
-  AddToCart = 'AddToCart',
   AppInitialized = 'AppInitialized',
-  ContactDesigner = 'ContactDesigner',
-  DirtyStateChanged = 'DirtyStateChanged',
   iFrameLoaded = 'iFrameLoaded',
   iFrameRedirect = 'iFrameRedirect',
-  ProjectDeleted = 'ProjectDeleted',
+  DirtyStateChanged = 'DirtyStateChanged',
   ProjectSaved = 'ProjectSaved',
-  TrackingEvent = 'TrackingEvent',
+  ProjectDeleted = 'ProjectDeleted',
+  ContactDesigner = 'ContactDesigner',
+  AddToCart = 'AddToCart',
+  ContinueToCart = 'ContinueToCart',
   TokenRefreshRequested = 'TokenRefreshRequested',
   UnauthorizedToken = 'UnauthorizedToken',
+  TrackingEvent = 'TrackingEvent',
 }
 
 interface CommonPayload {
@@ -81,15 +82,19 @@ export class VendorCommunicator extends Communicator {
   }
 
   appInitialized(message: string): void {
-    this.post({type: VendorEvent.AddToCart, payload: message});
+    this.post({type: VendorEvent.AppInitialized, payload: message});
   }
 
-  addToCart(payload: SnapshotPayload<CabinetsMetadata>): void {
-    this.post({type: VendorEvent.AddToCart, payload});
+  iframeLoaded(message: string): void {
+    this.post({type: VendorEvent.iFrameLoaded, payload: message});
+  }
+  
+  iframeRedirect(payload: iFrameRedirectPayload): void {
+    this.post({type: VendorEvent.iFrameRedirect, payload});
   }
 
-  contactDesigner(payload: SnapshotPayload<CabinetsMetadata>): void {
-    this.post({type: VendorEvent.ContactDesigner, payload});
+  dirtyStateChanged(payload: DirtyStateChangedPayload): void {
+    this.post({type: VendorEvent.DirtyStateChanged, payload});
   }
 
   projectSaved(payload: ProjectSavedPayload): void {
@@ -100,8 +105,16 @@ export class VendorCommunicator extends Communicator {
     this.post({type: VendorEvent.ProjectDeleted, payload});
   }
 
-  dirtyStateChanged(payload: DirtyStateChangedPayload): void {
-    this.post({type: VendorEvent.DirtyStateChanged, payload});
+  contactDesigner(payload: SnapshotPayload<CabinetsMetadata>): void {
+    this.post({type: VendorEvent.ContactDesigner, payload});
+  }
+
+  addToCart(payload: SnapshotPayload<CabinetsMetadata>): void {
+    this.post({type: VendorEvent.AddToCart, payload});
+  }
+
+  continueToCart(payload: SnapshotPayload<CabinetsMetadata>): void {
+    this.post({type: VendorEvent.ContinueToCart, payload})
   }
 
   tokenRefreshRequested(payload: TokenRefreshRequestedPayload): void {
@@ -110,14 +123,6 @@ export class VendorCommunicator extends Communicator {
 
   unauthorizedToken(error: string): void {
     this.post({type: VendorEvent.UnauthorizedToken, payload: error});
-  }
-
-  iframeLoaded(message: string): void {
-    this.post({type: VendorEvent.iFrameLoaded, payload: message});
-  }
-  
-  iframeRedirect(payload: iFrameRedirectPayload): void {
-    this.post({type: VendorEvent.iFrameRedirect, payload});
   }
 
   trackEvent(payload: TrackingEventPayload): void {
