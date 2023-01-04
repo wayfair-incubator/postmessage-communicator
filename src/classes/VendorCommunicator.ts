@@ -66,7 +66,7 @@ interface iFrameRedirectPayload extends CommonPayload {
 }
 
 interface TokenRefreshRequestedPayload extends CommonPayload {
-  requestId: string; 
+  requestId: string;
 }
 
 interface TrackingEventPayload {
@@ -88,7 +88,7 @@ export class VendorCommunicator extends Communicator {
   iframeLoaded(message: string): void {
     this.post({type: VendorEvent.iFrameLoaded, payload: message});
   }
-  
+
   iframeRedirect(payload: iFrameRedirectPayload): void {
     this.post({type: VendorEvent.iFrameRedirect, payload});
   }
@@ -114,7 +114,7 @@ export class VendorCommunicator extends Communicator {
   }
 
   continueToCart(payload: SnapshotPayload<CabinetsMetadata>): void {
-    this.post({type: VendorEvent.ContinueToCart, payload})
+    this.post({type: VendorEvent.ContinueToCart, payload});
   }
 
   tokenRefreshRequested(payload: TokenRefreshRequestedPayload): void {
