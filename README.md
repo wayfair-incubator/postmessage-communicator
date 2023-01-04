@@ -63,7 +63,7 @@ install them.
 
 ## Vendor Communicator API
 
-### `addToCart`
+### TBD
 
 | Parameter Name | Required | Description            | Type   | Default   |
 | -------------- | -------- | ---------------------- | ------ | --------- |
