@@ -88,6 +88,6 @@ export class VendorCommunicator extends Communicator {
   }
 
   continueToCart(payload: EventPayload): void {
-    this.post({type: VendorEvent.ContinueToCart, payload})
+    this.post({type: VendorEvent.ContinueToCart, payload});
   }
 }

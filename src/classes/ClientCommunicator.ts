@@ -25,6 +25,6 @@ export class ClientCommunicator extends Communicator {
     this.post({type: ClientEvent.RefreshWithToken, payload: token});
   }
   addToCartStatus(payload: AddToCartStatusPayload): void {
-    this.post({type: ClientEvent.AddToCartStatus, payload})
+    this.post({type: ClientEvent.AddToCartStatus, payload});
   }
 }
