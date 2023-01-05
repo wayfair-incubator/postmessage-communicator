@@ -10,9 +10,13 @@ and this project adheres to
 
 ### TBA
 
-## [v4.1.1] - 2023-01-05
+## [v5.0.1] - 2023-01-05
 
 - Added Vendor Project Saved event payload
+
+## [v5.0.0] - 2021-01-04
+
+- Updated event types and payloads in Vendor Communicator
 
 ## [v4.1.0] - 2022-12-23
 
