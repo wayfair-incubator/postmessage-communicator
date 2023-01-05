@@ -67,8 +67,8 @@ export class VendorCommunicator extends Communicator {
     this.post({type: VendorEvent.iFrameLoaded});
   }
 
-  projectSaved(): void {
-    this.post({type: VendorEvent.ProjectSaved});
+  projectSaved(payload: EventPayload): void {
+    this.post({type: VendorEvent.ProjectSaved, payload});
   }
 
   projectDeleted(): void {

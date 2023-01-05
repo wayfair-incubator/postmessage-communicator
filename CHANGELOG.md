@@ -10,6 +10,10 @@ and this project adheres to
 
 ### TBA
 
+## [v4.1.1] - 2023-01-05
+
+- Added Vendor Project Saved event payload
+
 ## [v4.1.0] - 2022-12-23
 
 - Added Continue to Cart Event to the Vendor Communicator

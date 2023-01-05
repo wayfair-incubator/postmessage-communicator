@@ -98,8 +98,16 @@ no parameters
 no parameters
 
 ### `projectSaved`
+| Parameter Name | Required | Description            | Type     | Default   |
+| -------------- | -------- | ---------------------- | -------- | --------- |
+| schema         | yes      | payload schema to use  | string   |           |
+| token          | yes      | auth token             | string   |           |
+| customerId     | yes      | vendor customer id     | string   |           |
+| projectId      | yes      | project identifier     | string   |           |
+| projectVersion | yes      | project version        | string   |           |
+| metadata       | yes      | project metadata       | Metadata |           |
+| bom            | yes      | bill of materials      | string   |           |
 
-no parameters
 
 ### `projectDeleted`
 
