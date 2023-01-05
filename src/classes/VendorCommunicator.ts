@@ -117,37 +117,19 @@ export class VendorCommunicator extends Communicator {
     this.post({type: VendorEvent.ContinueToCart, payload});
   }
 
-<<<<<<< HEAD
   projectSaved(payload: EventPayload): void {
     this.post({type: VendorEvent.ProjectSaved, payload});
   }
 
-  projectDeleted(): void {
-    this.post({type: VendorEvent.ProjectDeleted});
-  }
-
-  trackEvent(payload: TrackingEvent): void {
-    this.post({type: VendorEvent.TrackingEvent, payload});
-  }
-
-  tokenRefreshRequested(): void {
-    this.post({type: VendorEvent.TokenRefreshRequested});
-=======
   tokenRefreshRequested(payload: TokenRefreshRequestedPayload): void {
     this.post({type: VendorEvent.TokenRefreshRequested, payload});
->>>>>>> main
   }
 
   unauthorizedToken(error: string): void {
     this.post({type: VendorEvent.UnauthorizedToken, payload: error});
   }
 
-<<<<<<< HEAD
-  continueToCart(payload: EventPayload): void {
-    this.post({type: VendorEvent.ContinueToCart, payload});
-=======
   trackEvent(payload: TrackingEventPayload): void {
     this.post({type: VendorEvent.TrackingEvent, payload});
->>>>>>> main
   }
 }
