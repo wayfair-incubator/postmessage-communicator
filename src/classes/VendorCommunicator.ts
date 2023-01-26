@@ -13,6 +13,13 @@ export enum VendorEvent {
   TokenRefreshRequested = 'TokenRefreshRequested',
   UnauthorizedToken = 'UnauthorizedToken',
   TrackingEvent = 'TrackingEvent',
+  NavidationEvent = 'NavigationEvent',
+}
+
+export enum NavigationEventType {
+  ProjectLoaded = 'ProjectLoaded',
+  NewProjectSaved = 'NewProjectSaved',
+  ProjectsPageLoaded = 'ProjectsPageLoaded',
 }
 
 interface CommonPayload {
@@ -74,6 +81,11 @@ interface TrackingEventPayload {
   actionData: Record<string, unknown>;
 }
 
+interface NavigationEventPayload extends CommonPayload {
+  eventType: NavigationEventType; 
+  projectId?: string;
+}
+
 export class VendorCommunicator extends Communicator {
   constructor(origin: string) {
     super(origin);
@@ -128,4 +140,7 @@ export class VendorCommunicator extends Communicator {
   trackEvent(payload: TrackingEventPayload): void {
     this.post({type: VendorEvent.TrackingEvent, payload});
   }
+  
+  navigationEvent(payload: NavigationEventPayload): void {
+    this.post({type: VendorEvent.NavigationEvent, payload});
 }
