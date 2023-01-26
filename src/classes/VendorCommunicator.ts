@@ -82,7 +82,7 @@ interface TrackingEventPayload {
 }
 
 interface NavigationEventPayload extends CommonPayload {
-  eventType: NavigationEventType; 
+  eventType: NavigationEventType;
   projectId?: string;
 }
 
@@ -140,7 +140,7 @@ export class VendorCommunicator extends Communicator {
   trackEvent(payload: TrackingEventPayload): void {
     this.post({type: VendorEvent.TrackingEvent, payload});
   }
-  
+
   navigationEvent(payload: NavigationEventPayload): void {
     this.post({type: VendorEvent.NavigationEvent, payload});
   }
