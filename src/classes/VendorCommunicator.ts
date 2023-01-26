@@ -13,7 +13,7 @@ export enum VendorEvent {
   TokenRefreshRequested = 'TokenRefreshRequested',
   UnauthorizedToken = 'UnauthorizedToken',
   TrackingEvent = 'TrackingEvent',
-  NavidationEvent = 'NavigationEvent',
+  NavigationEvent = 'NavigationEvent',
 }
 
 export enum NavigationEventType {
