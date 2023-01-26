@@ -143,4 +143,5 @@ export class VendorCommunicator extends Communicator {
   
   navigationEvent(payload: NavigationEventPayload): void {
     this.post({type: VendorEvent.NavigationEvent, payload});
+  }
 }
